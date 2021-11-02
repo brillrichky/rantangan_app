@@ -1,0 +1,118 @@
+{
+  "project_info": {
+    "project_number": "226639512015",
+    "project_id": "flutter-food-delivery-89818",
+    "storage_bucket": "flutter-food-delivery-89818.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:226639512015:android:280abb750f56245fef12ba",
+        "android_client_info": {
+          "package_name": "com.example.flutter_food_delivery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "226639512015-0nah8jd98hk0tbjt383o3po1grbcboqi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUxBgyGgJAqhsTQRRLUcoAmVh_xFozFX0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "226639512015-0nah8jd98hk0tbjt383o3po1grbcboqi.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "226639512015-tjqc17lkti9s18661c6jandvhrbkre47.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterFoodDelivery"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:226639512015:android:149b254d14564c60ef12ba",
+        "android_client_info": {
+          "package_name": "com.example.rantangan_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "226639512015-0nah8jd98hk0tbjt383o3po1grbcboqi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUxBgyGgJAqhsTQRRLUcoAmVh_xFozFX0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "226639512015-0nah8jd98hk0tbjt383o3po1grbcboqi.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "226639512015-tjqc17lkti9s18661c6jandvhrbkre47.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterFoodDelivery"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:226639512015:android:69b232e55e9ece18ef12ba",
+        "android_client_info": {
+          "package_name": "com.rantangan.rantangan_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "226639512015-0nah8jd98hk0tbjt383o3po1grbcboqi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUxBgyGgJAqhsTQRRLUcoAmVh_xFozFX0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "226639512015-0nah8jd98hk0tbjt383o3po1grbcboqi.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "226639512015-tjqc17lkti9s18661c6jandvhrbkre47.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterFoodDelivery"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
