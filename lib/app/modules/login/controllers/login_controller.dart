@@ -40,7 +40,7 @@ class LoginController extends GetxController {
       Get.offAllNamed(Routes.LOGIN);
     } else {
       //Get.toNamed(Routes.HOME);
-      Get.offAndToNamed(Routes.HOME);
+      Get.offAllNamed(Routes.HOME);
     }
   }
 

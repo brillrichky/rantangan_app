@@ -1,7 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:rantangan_app/app/modules/home/vendor_model.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  RxList<VendorModel> vendors = RxList<VendorModel>([]);
 
   final count = 0.obs;
   var index = 0;
@@ -13,6 +18,7 @@ class HomeController extends GetxController {
 
   @override
   void onReady() {
+    vendors.bindStream(getAllVendors());
     super.onReady();
   }
 
@@ -22,6 +28,23 @@ class HomeController extends GetxController {
   void updateIndex(int a) {
     index = a;
     update();
+  }
+
+  double distanceCalculator(
+      double latA, double longA, double latB, double longB) {
+    double distanceInMeters =
+        Geolocator.distanceBetween(latA, longA, latB, longB);
+    distanceInMeters = distanceInMeters / 1000;
+    return distanceInMeters.roundToDouble();
+  }
+
+  Stream<List<VendorModel>> getAllVendors() {
+    return firestore.collection("vendors").snapshots().map((query) {
+      return query.docs.map((e) {
+        print("data Meal Plan ${e.data()}");
+        return VendorModel.fromMap(e.data());
+      }).toList();
+    });
   }
 
   void increment() => count.value++;
