@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:rantangan_app/app/modules/home/controllers/home_controller.dart';
 import 'package:rantangan_app/app/modules/home/vendor_model.dart';
 import 'package:rantangan_app/app/modules/login/controllers/login_controller.dart';
+import 'package:rantangan_app/app/routes/app_pages.dart';
 
 class VendorlistView extends GetView<HomeController> {
   @override
@@ -30,36 +31,42 @@ class SingleVendorWidget extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Card(
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Get.toNamed(Routes.STORE, arguments: vendor);
+        },
         child: Container(
-          height: context.height * 0.2,
-          width: context.width * 0.2,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                ListTile(
-                  leading: Icon(
-                    Icons.store,
-                    size: 50,
+          height: context.height * 0.4,
+          width: double.infinity,
+          child: Column(
+            children: [
+              Column(
+                children: [
+                  ListTile(
+                    leading: Icon(
+                      Icons.store,
+                      size: 50,
+                    ),
+                    title: Text(vendor.name),
+                    subtitle: Text(vendor.address),
+                    trailing: Icon(Icons.arrow_right),
+                    isThreeLine: true,
                   ),
-                  title: Text(vendor.name),
-                  subtitle: Text(vendor.address),
-                  trailing: Icon(Icons.arrow_right),
-                ),
-                Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage(
-                            'assets/images/placeholder-restaurant.png'),
-                      ),
+                ],
+              ),
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: vendor.imageurl.isEmpty
+                          ? AssetImage(
+                              'assets/images/placeholder-restaurant.png')
+                          : NetworkImage(vendor.imageurl),
                     ),
                   ),
-                )
-              ],
-            ),
+                ),
+              ),
+            ],
           ),
         ),
       ),

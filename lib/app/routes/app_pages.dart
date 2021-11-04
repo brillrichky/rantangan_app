@@ -4,6 +4,8 @@ import 'package:rantangan_app/app/modules/home/bindings/home_binding.dart';
 import 'package:rantangan_app/app/modules/home/views/home_view.dart';
 import 'package:rantangan_app/app/modules/login/bindings/login_binding.dart';
 import 'package:rantangan_app/app/modules/login/views/login_view.dart';
+import 'package:rantangan_app/app/modules/order/bindings/order_binding.dart';
+import 'package:rantangan_app/app/modules/order/views/order_view.dart';
 import 'package:rantangan_app/app/modules/store/bindings/store_binding.dart';
 import 'package:rantangan_app/app/modules/store/views/store_view.dart';
 
@@ -29,6 +31,11 @@ class AppPages {
       name: _Paths.STORE,
       page: () => StoreView(),
       binding: StoreBinding(),
+    ),
+    GetPage(
+      name: _Paths.ORDER,
+      page: () => OrderView(),
+      binding: OrderBinding(),
     ),
   ];
 }

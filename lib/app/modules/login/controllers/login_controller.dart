@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:rantangan_app/app/modules/login/user_model.dart';
 import 'package:rantangan_app/app/routes/app_pages.dart';
@@ -14,6 +15,7 @@ class LoginController extends GetxController {
   TextEditingController password = TextEditingController();
   Rx<User> firebaseUser;
   Rx<UserModel> userModel = UserModel().obs;
+  Position currentPos;
 
   final count = 0.obs;
   String usersCollection = "users";
@@ -24,8 +26,7 @@ class LoginController extends GetxController {
   }
 
   @override
-  void onReady() {
-    super.onReady();
+  void onReady() async {
     firebaseUser = Rx<User>(auth.currentUser);
     firebaseUser.bindStream(auth.userChanges());
     ever(firebaseUser, _setInitialScreen);

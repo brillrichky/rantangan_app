@@ -7,18 +7,21 @@ import 'package:rantangan_app/app/modules/home/vendor_model.dart';
 class HomeController extends GetxController {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   RxList<VendorModel> vendors = RxList<VendorModel>([]);
+  Position currentPos;
 
   final count = 0.obs;
   var index = 0;
 
   @override
-  void onInit() {
+  void onInit() async {
+    currentPos = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    vendors.bindStream(getAllVendors());
     super.onInit();
   }
 
   @override
-  void onReady() {
-    vendors.bindStream(getAllVendors());
+  void onReady() async {
     super.onReady();
   }
 
