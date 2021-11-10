@@ -8,6 +8,7 @@ abstract class Routes {
   static const LOGIN = _Paths.LOGIN;
   static const STORE = _Paths.STORE;
   static const ORDER = _Paths.ORDER;
+  static const EDIT = _Paths.EDIT;
 }
 
 abstract class _Paths {
@@ -15,4 +16,5 @@ abstract class _Paths {
   static const LOGIN = '/login';
   static const STORE = '/store';
   static const ORDER = '/order';
+  static const EDIT = '/edit';
 }

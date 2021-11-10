@@ -33,10 +33,10 @@ class VendorModel {
     email = data["email"];
     position = data["position"];
     imageurl = data["imageURL"];
-    convertPostoAddress(position);
+    _convertPostoAddress(position);
   }
 
-  void convertPostoAddress(GeoPoint pos) async {
+  void _convertPostoAddress(GeoPoint pos) async {
     try {
       List<Placemark> listPlaceMarks =
           await placemarkFromCoordinates(pos.latitude, pos.longitude);

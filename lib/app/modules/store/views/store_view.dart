@@ -18,7 +18,8 @@ class StoreView extends GetView<StoreController> {
       floatingActionButton: FloatingActionButton.extended(
         label: Text("PESAN SEKARANG"),
         onPressed: () {
-          Get.toNamed((Routes.ORDER));
+          Get.toNamed(Routes.ORDER,
+              arguments: controller.mealplans[controller.index]);
         },
       ),
       body: Container(
@@ -103,14 +104,75 @@ class MealPlansList extends GetView<StoreController> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Container(
-        child: Card(
-          child: ListTile(
-            title: Text(mealplan.name.toString()),
+    return Container(
+      color: Colors.white,
+      child: Column(
+        children: [
+          Divider(),
+          Text(mealplan.name),
+          Divider(),
+          Container(
+            height: 50,
+            width: double.infinity,
+            child: Row(
+              children: [
+                Container(
+                  height: 50,
+                  width: 100,
+                  child: Center(child: Text("Variasi\nMenu Pagi")),
+                ),
+                Container(
+                  height: 50,
+                  width: context.width * 0.7,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: mealplan.menu.menuPagi.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        padding: EdgeInsets.only(right: 5),
+                        height: 50,
+                        child: Chip(
+                          label: Text(mealplan.menu.menuPagi[index]),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
+          Container(
+            height: 50,
+            width: double.infinity,
+            child: Row(
+              children: [
+                Container(
+                  height: 50,
+                  width: 100,
+                  child: Center(child: Text("Variasi\nMenu Siang")),
+                ),
+                Container(
+                  height: 50,
+                  width: context.width * 0.7,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: mealplan.menu.menuSiang.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        padding: EdgeInsets.only(right: 5),
+                        height: 50,
+                        child: Chip(
+                          label: Text(mealplan.menu.menuSiang[index]),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Divider(),
+        ],
       ),
     );
   }

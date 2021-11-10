@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:rantangan_app/app/modules/home/vendor_model.dart';
+import 'package:rantangan_app/app/modules/login/controllers/login_controller.dart';
+import 'package:rantangan_app/app/modules/login/user_model.dart';
 
 class HomeController extends GetxController {
+  LoginController loginC = Get.find();
+  UserModel usermodel;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   RxList<VendorModel> vendors = RxList<VendorModel>([]);
   Position currentPos;
@@ -14,6 +17,8 @@ class HomeController extends GetxController {
 
   @override
   void onInit() async {
+    this.usermodel = loginC.userModel.value;
+    print(usermodel.toString());
     currentPos = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
     vendors.bindStream(getAllVendors());

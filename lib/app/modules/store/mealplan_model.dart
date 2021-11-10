@@ -22,22 +22,16 @@ class MealPlanModel {
 }
 
 class Menu {
-  String senin;
-  String selasa;
-  String rabu;
-  String kamis;
-  String jumat;
+  List<String> menuSiang;
+  List<String> menuPagi;
 
   Menu({
-    this.senin,
-    this.selasa,
-    this.rabu,
-    this.kamis,
-    this.jumat,
+    this.menuSiang,
+    this.menuPagi,
   });
 
   Menu.fromMap(Map<String, dynamic> data) {
-    senin = data["menu"]["senin"];
-    print(senin);
+    menuSiang = List.from(data["menu"]["menuSiang"]);
+    menuPagi = List.from(data["menu"]["menuPagi"]);
   }
 }

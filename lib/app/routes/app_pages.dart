@@ -1,5 +1,8 @@
 import 'package:get/get.dart';
+import 'package:get/get_navigation/src/routes/default_transitions.dart';
 
+import 'package:rantangan_app/app/modules/edit/bindings/edit_binding.dart';
+import 'package:rantangan_app/app/modules/edit/views/edit_view.dart';
 import 'package:rantangan_app/app/modules/home/bindings/home_binding.dart';
 import 'package:rantangan_app/app/modules/home/views/home_view.dart';
 import 'package:rantangan_app/app/modules/login/bindings/login_binding.dart';
@@ -36,6 +39,12 @@ class AppPages {
       name: _Paths.ORDER,
       page: () => OrderView(),
       binding: OrderBinding(),
+      transition: Transition.leftToRight,
+    ),
+    GetPage(
+      name: _Paths.EDIT,
+      page: () => EditView(),
+      binding: EditBinding(),
     ),
   ];
 }

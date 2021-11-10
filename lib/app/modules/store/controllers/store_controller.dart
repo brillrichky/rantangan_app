@@ -14,6 +14,7 @@ class StoreController extends GetxController {
 
   VendorModel vendor;
   double distanceKM;
+  int index = 0;
 
   final count = 0.obs;
   @override
