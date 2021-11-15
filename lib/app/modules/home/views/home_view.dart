@@ -41,7 +41,7 @@ class HomeView extends GetView<HomeController> {
             ),
             BottomNavyBarItem(
               icon: Icon(Icons.inbox_outlined),
-              title: Text('History'),
+              title: Text('MyOrder'),
               textAlign: TextAlign.center,
             ),
             BottomNavyBarItem(

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:rantangan_app/app/modules/login/views/register_view.dart';
 
 import '../controllers/login_controller.dart';
 
@@ -9,78 +12,107 @@ class LoginView extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.amber,
         body: SingleChildScrollView(
           child: Container(
-              padding: EdgeInsets.fromLTRB(50, 50, 50, 0),
+            height: context.height,
+            padding: EdgeInsets.all(10),
+            child: Padding(
+              padding: const EdgeInsets.all(40.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Text(
-                    'Rantangan',
-                    style: Theme.of(context).textTheme.headline2,
-                    textAlign: TextAlign.center,
+                  FaIcon(
+                    FontAwesomeIcons.gg,
+                    size: 100,
                   ),
-                  Text(
-                    'Katering Harian',
-                    style: Theme.of(context).textTheme.subtitle1,
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    'subscription based cathering',
-                    style: Theme.of(context).textTheme.overline,
-                  ),
-                  SizedBox(height: 25),
-                  TextFormField(
-                    controller: controller.email,
-                    decoration: const InputDecoration(
-                      //Form Email
-                      hintText: 'Masukkan Email',
-                      labelText: 'Email',
+                  LimitedBox(
+                    maxHeight: 100,
+                    child: Container(
+                      width: double.infinity,
+                      child: Text(
+                        'Rantangan',
+                        style: Theme.of(context).textTheme.headline3,
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
-                  TextFormField(
-                    controller: controller.password,
-                    obscureText: true,
-                    decoration: const InputDecoration(
-                      //Form Password
-                      hintText: 'Masukkan Password',
-                      labelText: 'Password',
+                  LimitedBox(
+                    maxHeight: 50,
+                    child: Container(
+                      width: double.infinity,
+                      child: Column(
+                        children: [
+                          Text(
+                            'Katering Harian',
+                            style: Theme.of(context).textTheme.subtitle1,
+                            textAlign: TextAlign.center,
+                          ),
+                          Text(
+                            'subscription based cathering',
+                            style: Theme.of(context).textTheme.overline,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  SizedBox(height: 25),
-                  ElevatedButton(
-                    //Button Login
-                    onPressed: () {
-                      controller
-                          .signIn(); //LoginPage > AuthController > Auth?:Home:Login
-                    },
-                    child: Text('Login'),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      //Register Page
-                    },
-                    child: Text('Buat Akun'),
+                  Container(
+                    width: double.infinity,
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          controller: controller.email,
+                          decoration: const InputDecoration(
+                            //Form Email
+                            border: OutlineInputBorder(),
+                            hintText: 'Masukkan Email',
+                            labelText: 'Email',
+                          ),
+                        ),
+                        SizedBox(height: 25),
+                        TextFormField(
+                          controller: controller.password,
+                          obscureText: true,
+                          decoration: const InputDecoration(
+                            //Form Password
+                            border: OutlineInputBorder(),
+                            hintText: 'Masukkan Password',
+                            labelText: 'Password',
+                          ),
+                        ),
+                        SizedBox(height: 25),
+                        ElevatedButton(
+                          //Button Login
+                          onPressed: () {
+                            controller
+                                .signIn(); //LoginPage > AuthController > Auth?:Home:Login
+                          },
+                          child: Text('Login'),
+                        ),
+                        Container(
+                          width: double.infinity,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("Belum memiliki akun?"),
+                              TextButton(
+                                onPressed: () {
+                                  Get.to(RegisterView());
+                                },
+                                child: Text('Buat Akun'),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   Divider(
                     thickness: 1,
                   ),
-                  // ElevatedButton(
-                  //   style: ElevatedButton.styleFrom(
-                  //     primary: Colors.redAccent,
-                  //   ),
-                  //   onPressed: () {
-                  //     Get.snackbar(
-                  //         "Login Vendor [Error]", "error: belum tersedia",
-                  //         snackPosition: SnackPosition.BOTTOM,
-                  //         backgroundColor: Colors.red,
-                  //         colorText: Colors.white);
-                  //   },
-                  //   child: Text('Mode Penjual'),
-                  // ),
                 ],
-              )),
+              ),
+            ),
+          ),
         ),
       ),
     );

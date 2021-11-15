@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 
 class UserModel {
   String id;
@@ -24,11 +25,11 @@ class UserModel {
     name = snapshot.data()["name"];
     phone = snapshot.data()["phone"];
     position = snapshot.data()["position"];
-    _convertPostoAddress(position);
+    _convertGeotoAddress(position);
     print(snapshot.data().toString());
   }
 
-  void _convertPostoAddress(GeoPoint pos) async {
+  void _convertGeotoAddress(GeoPoint pos) async {
     try {
       List<Placemark> listPlaceMarks =
           await placemarkFromCoordinates(pos.latitude, pos.longitude);
@@ -39,6 +40,33 @@ class UserModel {
       address = "ERROR";
       print(e);
     }
+  }
+
+  void _convertPostoAddress(Position pos) async {
+    try {
+      List<Placemark> listPlaceMarks =
+          await placemarkFromCoordinates(pos.latitude, pos.longitude);
+      Placemark place = listPlaceMarks[0];
+      position = GeoPoint(pos.latitude, pos.longitude);
+      address =
+          "${place.street}, ${place.administrativeArea}, ${place.subAdministrativeArea}";
+    } catch (e) {
+      address = "ERROR";
+      print(e);
+    }
+  }
+
+  void setAddress() async {
+    Position currentPos = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
+    await _convertPostoAddress(currentPos);
+    print(address);
+    print(currentPos.toString());
+  }
+
+  void updateUser(String name) {
+    this.name = name;
   }
 
   // User.fromJson(Map<String, dynamic> json) {

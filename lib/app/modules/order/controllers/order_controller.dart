@@ -1,16 +1,23 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:rantangan_app/app/modules/home/vendor_model.dart';
+import 'package:rantangan_app/app/modules/login/controllers/login_controller.dart';
+import 'package:rantangan_app/app/modules/store/controllers/store_controller.dart';
 import 'package:rantangan_app/app/modules/store/mealplan_model.dart';
 
 class OrderController extends GetxController {
-  final count = 0.obs;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  LoginController loginC = Get.find();
+  StoreController storeC = Get.find();
+  MealPlanModel mealplan;
+
   Rx<bool> isDateNull = true.obs;
   Rx<bool> isFishSelected = false.obs;
   Rx<bool> isPeanutSelected = false.obs;
   Rx<bool> isMilkSelected = false.obs;
 
+  TextEditingController extraNotes = TextEditingController();
   Rx<DateTime> startSub = DateTime.now().obs;
-  MealPlanModel mealplan;
   DateTime endSub = null;
 
   @override
@@ -26,5 +33,46 @@ class OrderController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
+
+  void orderValidator() {
+    if (isDateNull.isTrue) {
+      Get.snackbar("GAGAL", "GAGAL");
+    } else {
+      addOrder();
+    }
+  }
+
+  void addOrder() async {
+    try {
+      firestore.collection("orders").add({
+        "userId": loginC.userModel.value.id,
+        "vendorId": storeC.vendor.id,
+        "mealId": mealplan.id,
+        "subStart": startSub.value,
+        "subEnd": startSub.value.add(Duration(days: 7)),
+        "vendorPhone": storeC.vendor.phone,
+        "userPhone": loginC.userModel.value.phone,
+        "mealPrice": mealplan.price,
+        "extraNotes": extraNotes.text.trim(),
+        "isConfirmed": false,
+      }).then((value) {
+        _insertOrderId(value.id);
+        print("Sukses add OrderId");
+      });
+    } catch (e) {
+      return print("Error");
+    }
+  }
+
+  void _insertOrderId(var id) async {
+    try {
+      firestore.collection("orders").doc(id).update({
+        "orderId": id,
+      }).then((value) {
+        print("Sukses Insert OrderId");
+      });
+    } catch (e) {
+      return print("Error");
+    }
+  }
 }

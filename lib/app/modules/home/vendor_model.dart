@@ -9,6 +9,7 @@ class VendorModel {
   GeoPoint position;
   String address;
   String imageurl;
+  String phone;
 
   VendorModel({
     this.id,
@@ -17,6 +18,7 @@ class VendorModel {
     this.position,
     this.address,
     this.imageurl,
+    this.phone,
   });
 
   // VendorModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> snapshot) {
@@ -33,6 +35,7 @@ class VendorModel {
     email = data["email"];
     position = data["position"];
     imageurl = data["imageURL"];
+    phone = data["phone"];
     _convertPostoAddress(position);
   }
 

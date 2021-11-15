@@ -18,6 +18,7 @@ dependencies:
   flutter: 
     sdk: flutter
   date_field: ^2.1.2
+  google_fonts: ^2.1.0
 
 dev_dependencies: 
   lints: 1.0.1
