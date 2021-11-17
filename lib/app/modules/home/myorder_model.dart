@@ -5,6 +5,7 @@ class MyOrderModel {
   String userId;
   String vendorId;
   String orderId;
+  String mealId;
   var subStart;
   var subEnd;
   String mealPrice;
@@ -12,9 +13,11 @@ class MyOrderModel {
   String vendorPhone;
   String extraNotes;
   bool isConfirmed;
+  bool isCancelled;
 
   MyOrderModel({
     this.mealPrice,
+    this.mealId,
     this.subEnd,
     this.subStart,
     this.orderId,
@@ -24,11 +27,13 @@ class MyOrderModel {
     this.vendorPhone,
     this.extraNotes,
     this.isConfirmed,
+    this.isCancelled,
   });
 
   MyOrderModel.fromMap(Map<String, dynamic> data) {
     userId = data["userId"];
     vendorId = data["vendorId"];
+    mealId = data["mealId"];
     orderId = data["orderId"];
     subStart = (data["subStart"] as Timestamp).toDate();
     subEnd = (data["subStart"] as Timestamp).toDate();
@@ -37,5 +42,6 @@ class MyOrderModel {
     vendorPhone = data["vendorPhone"];
     extraNotes = data["extraNotes"];
     isConfirmed = data["isConfirmed"];
+    isCancelled = data["isCancelled"];
   }
 }

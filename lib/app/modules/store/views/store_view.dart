@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
 import 'package:rantangan_app/app/modules/store/mealplan_model.dart';
@@ -29,9 +30,14 @@ class StoreView extends GetView<StoreController> {
             Stack(
               children: [
                 Container(
-                  child: Image.network(
-                    controller.vendor.imageurl,
-                    fit: BoxFit.cover,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: controller.vendor.imageurl.isEmpty
+                          ? AssetImage(
+                              'assets/images/placeholder-restaurant-2.png')
+                          : NetworkImage(controller.vendor.imageurl),
+                    ),
                   ),
                   width: double.infinity,
                   height: context.height * 0.25,
@@ -81,14 +87,35 @@ class StoreView extends GetView<StoreController> {
             ),
             Expanded(
               child: Obx(
-                () => ListView(
-                    padding: const EdgeInsets.all(10),
-                    children:
-                        controller.mealplans.map((MealPlanModel mealplan) {
-                      return MealPlansList(
-                        mealplan: mealplan,
-                      );
-                    }).toList()),
+                () => controller.mealplans.isNotEmpty
+                    ? ListView(
+                        padding: const EdgeInsets.all(10),
+                        children:
+                            controller.mealplans.map((MealPlanModel mealplan) {
+                          return MealPlansList(
+                            mealplan: mealplan,
+                          );
+                        }).toList())
+                    : Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Colors.grey.shade300,
+                                shape: BoxShape.circle,
+                              ),
+                              child: FaIcon(
+                                FontAwesomeIcons.boxOpen,
+                                size: 100,
+                                color: Colors.grey,
+                              ),
+                            ),
+                            Text("Toko belum memiliki paket",
+                                style: Theme.of(context).textTheme.headline5),
+                          ],
+                        ),
+                      ),
               ),
             ),
           ],

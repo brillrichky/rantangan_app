@@ -28,17 +28,23 @@ class VendorlistView extends GetView<HomeController> {
       //     ),
       //   ),
       // ),
-      body: Obx(
-        () =>
-            ListView(
-                padding: const EdgeInsets.all(10),
-                children: controller.vendors.map((VendorModel vendor) {
-                  return SingleVendorWidget(
-                    vendor: vendor,
-                  );
-                }).toList()) ??
-            Text("Loading. . ."),
-      ),
+      body: controller.vendors.isNotEmpty
+          ? Obx(
+              () => ListView(
+                  padding: const EdgeInsets.all(10),
+                  children: controller.vendors.map((VendorModel vendor) {
+                    return SingleVendorWidget(
+                      vendor: vendor,
+                    );
+                  }).toList()),
+            )
+          : Center(
+              child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(),
+              ],
+            )),
     );
   }
 }
@@ -59,6 +65,7 @@ class SingleVendorWidget extends GetView<HomeController> {
             Get.toNamed(Routes.STORE, arguments: vendor);
           },
           child: Container(
+            decoration: BoxDecoration(),
             height: context.height * 0.4,
             width: double.infinity,
             child: Column(
@@ -70,7 +77,7 @@ class SingleVendorWidget extends GetView<HomeController> {
                         fit: BoxFit.cover,
                         image: vendor.imageurl.isEmpty
                             ? AssetImage(
-                                'assets/images/placeholder-restaurant.png')
+                                'assets/images/placeholder-restaurant-2.png')
                             : NetworkImage(vendor.imageurl),
                       ),
                     ),

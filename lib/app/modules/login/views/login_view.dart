@@ -96,7 +96,7 @@ class LoginView extends GetView<LoginController> {
                               Text("Belum memiliki akun?"),
                               TextButton(
                                 onPressed: () {
-                                  Get.to(RegisterView());
+                                  Get.to(() => RegisterView());
                                 },
                                 child: Text('Buat Akun'),
                               ),

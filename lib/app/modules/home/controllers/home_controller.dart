@@ -8,6 +8,7 @@ import 'package:rantangan_app/app/modules/login/user_model.dart';
 
 class HomeController extends GetxController {
   LoginController loginC = Get.find();
+  var tempId;
   UserModel usermodel;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   RxList<VendorModel> vendors = RxList<VendorModel>([]);
@@ -18,18 +19,19 @@ class HomeController extends GetxController {
   var index = 0;
 
   @override
-  void onInit() async {
-    this.usermodel = loginC.userModel.value;
+  void onInit() {
+    tempId = Get.arguments;
+    print("INI TEMP ID = $tempId");
     vendors.bindStream(getAllVendors());
     print(usermodel.toString());
-    currentPos = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
     super.onInit();
   }
 
   @override
   void onReady() async {
     myOrders.bindStream(getAllMyOrders());
+    currentPos = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
     super.onReady();
   }
 
@@ -65,7 +67,7 @@ class HomeController extends GetxController {
   Stream<List<MyOrderModel>> getAllMyOrders() {
     return firestore
         .collection("orders")
-        .where("userId", isEqualTo: usermodel.id)
+        .where("userId", isEqualTo: tempId)
         .snapshots()
         .map((query) {
       return query.docs.map((e) {

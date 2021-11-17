@@ -24,6 +24,7 @@ class LoginController extends GetxController {
 
   @override
   void onInit() {
+    getCurrentPos();
     super.onInit();
   }
 
@@ -41,7 +42,7 @@ class LoginController extends GetxController {
     if (user == null) {
       Get.offAllNamed(Routes.LOGIN);
     } else {
-      Get.offAllNamed(Routes.HOME);
+      Get.offAllNamed(Routes.HOME, arguments: user.uid);
     }
   }
 
@@ -118,7 +119,6 @@ class LoginController extends GetxController {
   }
 
   _addUsertoFireStore(_userId) async {
-    await getCurrentPos();
     firestore.collection(usersCollection).doc(_userId).set({
       "name": name.text.trim(),
       "id": _userId,

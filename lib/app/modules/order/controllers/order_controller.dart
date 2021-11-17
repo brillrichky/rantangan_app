@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rantangan_app/app/modules/login/controllers/login_controller.dart';
 import 'package:rantangan_app/app/modules/store/controllers/store_controller.dart';
@@ -55,9 +55,14 @@ class OrderController extends GetxController {
         "mealPrice": mealplan.price,
         "extraNotes": extraNotes.text.trim(),
         "isConfirmed": false,
+        "isCancelled": false,
       }).then((value) {
         _insertOrderId(value.id);
         print("Sukses add OrderId");
+        Get.snackbar("SUKSES!", "Tunggu konfirmasi dari Penjual!",
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.green,
+            colorText: Colors.white);
       });
     } catch (e) {
       return print("Error");
