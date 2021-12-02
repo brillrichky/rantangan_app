@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
+import 'package:rantangan_app/app/modules/login/controllers/login_controller.dart';
 import 'package:rantangan_app/app/modules/store/mealplan_model.dart';
 import 'package:rantangan_app/app/routes/app_pages.dart';
 
 import '../controllers/store_controller.dart';
 
 class StoreView extends GetView<StoreController> {
+  LoginController loginC = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,8 +67,15 @@ class StoreView extends GetView<StoreController> {
                                       Icons.location_pin,
                                       size: 13,
                                     ),
-                                    Text(
-                                        " ${controller.distanceKM.toStringAsFixed(2)} KM"),
+                                    // Text(" ${controller.distanceKM.toStringAsFixed(2)} KM"),
+                                    Text("${controller.distanceCalculator(
+                                          loginC.userModel.value.position
+                                              .latitude,
+                                          loginC.userModel.value.position
+                                              .longitude,
+                                          controller.vendor.position.latitude,
+                                          controller.vendor.position.longitude,
+                                        ).toStringAsFixed(2)} KM"),
                                   ],
                                 ),
                               ),

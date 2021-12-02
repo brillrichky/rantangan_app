@@ -23,7 +23,7 @@ class MealPlanModel {
     description = data["description"];
     price = data["mealPrice"];
     allergen = List.from(data["allergen"]);
-    menu = Menu.fromMap(data);
+    menu = Menu.fromMap(data["menu"]);
   }
 }
 
@@ -37,7 +37,7 @@ class Menu {
   });
 
   Menu.fromMap(Map<String, dynamic> data) {
-    menuSiang = List.from(data["menu"]["menuSiang"]);
-    menuPagi = List.from(data["menu"]["menuPagi"]);
+    menuSiang = List.from(data["menuSiang"]);
+    menuPagi = List.from(data["menuPagi"]);
   }
 }

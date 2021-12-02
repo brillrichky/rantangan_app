@@ -80,8 +80,11 @@ class OrderView extends GetView<OrderController> {
                   ),
                   Spacer(),
                   Padding(
-                    padding:
-                        const EdgeInsets.only(left: 10.0, right: 10, top: 10),
+                    padding: const EdgeInsets.only(
+                      left: 10.0,
+                      right: 10,
+                      top: 10,
+                    ),
                     child: Container(
                       alignment: Alignment.centerRight,
                       child: ElevatedButton(
@@ -158,6 +161,10 @@ class OrderView extends GetView<OrderController> {
                                     width: double.infinity,
                                     child: Text("Catatan Tambahan")),
                                 TextFormField(
+                                  decoration: InputDecoration(
+                                    hintText:
+                                        "ex: dekat lampu merah; extra pedas;",
+                                  ),
                                   controller: controller.extraNotes,
                                 ),
                               ],
@@ -208,18 +215,16 @@ class OrderView extends GetView<OrderController> {
                       SizedBox(
                         height: 5,
                       ),
-                      Obx(
-                        () => Container(
-                          width: double.infinity,
-                          child: Row(
-                            children: [
-                              Text("Berakhir pada: "),
-                              Text(
-                                "${DateFormat.yMMMMd().format(controller.startSub.value.add(Duration(days: 7)))}",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
+                      Container(
+                        width: double.infinity,
+                        child: Row(
+                          children: [
+                            Text("Berakhir pada: "),
+                            Text(
+                              "${DateFormat.yMMMMd().format(controller.startSub.value.add(Duration(days: 7)))}",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -229,65 +234,6 @@ class OrderView extends GetView<OrderController> {
               Spacer(
                 flex: 1,
               ),
-              // Card(
-              //   child: Padding(
-              //     padding: const EdgeInsets.all(8.0),
-              //     child: Column(
-              //       children: [
-              //         Text("Optional Request"),
-              //         Container(
-              //           height: 50,
-              //           width: double.infinity,
-              //           child: Row(
-              //             children: [
-              //               Obx(
-              //                 () => FilterChip(
-              //                     label: Text("Tidak Pedas"),
-              //                     selected: controller.isFishSelected.value,
-              //                     onSelected: (value) {
-              //                       controller.isFishSelected.value = value;
-              //                     }),
-              //               ),
-              //               SizedBox(
-              //                 width: 10,
-              //               ),
-              //               Obx(
-              //                 () => FilterChip(
-              //                     label: Text("Extra Pedas"),
-              //                     selected: controller.isPeanutSelected.value,
-              //                     onSelected: (value) {
-              //                       controller.isPeanutSelected.value = value;
-              //                     }),
-              //               ),
-              //               SizedBox(
-              //                 width: 10,
-              //               ),
-              //             ],
-              //           ),
-              //         ),
-              //       ],
-              //     ),
-              //   ),
-              // ),
-              // Expanded(
-              //   child: Card(
-              //     child: Padding(
-              //       padding: const EdgeInsets.all(8.0),
-              //       child: Container(
-              //         width: double.infinity,
-              //         child: Column(
-              //           mainAxisAlignment: MainAxisAlignment.start,
-              //           children: [
-              //             Container(
-              //               width: double.infinity,
-              //               child: Text("Rincian Berlangganan:"),
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
               Divider(),
             ],
           ),

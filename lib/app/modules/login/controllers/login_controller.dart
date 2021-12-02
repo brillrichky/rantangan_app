@@ -18,8 +18,6 @@ class LoginController extends GetxController {
   Rx<User> firebaseUser;
   Rx<UserModel> userModel = UserModel().obs;
   Position currentPos;
-
-  final count = 0.obs;
   String usersCollection = "users";
 
   @override
@@ -146,8 +144,6 @@ class LoginController extends GetxController {
     userModel.value.phone = this.phone.text.trim();
     update();
   }
-
-  void increment() => count.value++;
 
   void getCurrentPos() async {
     currentPos = await Geolocator.getCurrentPosition(

@@ -3,25 +3,23 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:rantangan_app/app/modules/home/controllers/home_controller.dart';
 import 'package:rantangan_app/app/modules/home/vendor_model.dart';
+import 'package:rantangan_app/app/modules/login/controllers/login_controller.dart';
 import 'package:rantangan_app/app/modules/store/mealplan_model.dart';
 
 class StoreController extends GetxController {
   HomeController homeC = Get.find();
+  LoginController loginC = Get.find();
 
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   //CollectionReference mealplans = FirebaseFirestore.instance.collection('mealplans');
   RxList<MealPlanModel> mealplans = RxList<MealPlanModel>([]);
 
   VendorModel vendor;
-  double distanceKM;
-  int index = 0;
 
   final count = 0.obs;
   @override
   void onInit() {
     vendor = Get.arguments;
-    distanceKM =
-        distanceCalculator(vendor.position.latitude, vendor.position.longitude);
     super.onInit();
   }
 
@@ -35,12 +33,9 @@ class StoreController extends GetxController {
   void onClose() {}
 
   double distanceCalculator(
-    double lat,
-    double long,
-  ) {
-    print(homeC.currentPos.toString());
-    double distanceInMeters = Geolocator.distanceBetween(
-        lat, long, homeC.currentPos.latitude, homeC.currentPos.longitude);
+      double latA, double longA, double latB, double longB) {
+    double distanceInMeters =
+        Geolocator.distanceBetween(latA, longA, latB, longB);
     distanceInMeters = distanceInMeters / 1000;
     return distanceInMeters;
   }
