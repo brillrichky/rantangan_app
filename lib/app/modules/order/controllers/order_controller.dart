@@ -99,7 +99,7 @@ class OrderController extends GetxController {
           "subEnd": startSub.value.add(Duration(days: 7)),
           "extraNotes": "${extraNotes.text}",
           "status": 0,
-        }
+        },
       }).then((value) {
         _insertOrderId(value.id);
         print("Sukses add OrderId");

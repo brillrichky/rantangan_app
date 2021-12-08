@@ -54,6 +54,14 @@ class SingleVendorWidget extends GetView<HomeController> {
   final VendorModel vendor;
   SingleVendorWidget({Key key, this.vendor}) : super(key: key);
 
+  loadImage() {
+    try {
+      return NetworkImage(vendor.imageurl);
+    } catch (e) {
+      return AssetImage('assets/images/placeholder-restaurant-2.png');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -78,7 +86,7 @@ class SingleVendorWidget extends GetView<HomeController> {
                         image: vendor.imageurl.isEmpty
                             ? AssetImage(
                                 'assets/images/placeholder-restaurant-2.png')
-                            : NetworkImage(vendor.imageurl),
+                            : loadImage(),
                       ),
                     ),
                   ),

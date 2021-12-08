@@ -162,9 +162,16 @@ class CircleAvatarText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      controller.userModel.value.name.substring(0, 2).toUpperCase() ?? "ER",
-      style: TextStyle(fontSize: 40, color: Colors.white),
-    );
+    try {
+      return Text(
+        "${controller.userModel.value.name.substring(0, 2).toUpperCase()}",
+        style: TextStyle(fontSize: 40, color: Colors.white),
+      );
+    } catch (e) {
+      return Text(
+        "null",
+        style: TextStyle(fontSize: 40, color: Colors.white),
+      );
+    }
   }
 }
