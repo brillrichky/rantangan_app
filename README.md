@@ -9,3 +9,5 @@ Utilizing State Management GetX State Manager to achieve Model-View-Controller (
 
 This project is a thesis project for obtaining Bachelor Degree at Brawijaya University.
 Tech used: Firestore, Dart, Flutter, GetX.
+
+[![Watch the Demo]](https://drive.google.com/file/d/17uQZUx-mMmvOIus0DKrwjlBj0K_tlze8/view?usp=sharing)
